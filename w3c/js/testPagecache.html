@@ -1,0 +1,82 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<script src="pagecache.js"></script>
+<script>
+$PC.Log.level = 5;
+
+$PC.Log.info("");
+$PC.Log.info("=== Test requesting ===");
+
+// Normal Jsonp Calls
+$PC("http://api.duoshuo.com/threads/counts.jsonp?short_name=jokin&threads=index&callback=?", function(data, response, jsonp){
+  $PC.Log.info("Jsonp Call 1 Done");
+});
+
+$PC("http://api.duoshuo.com/threads/counts.jsonp?short_name=jokin&threads=index&callback=?", function(){
+  $PC.Log.info("Jsonp Call 2 Done");
+});
+
+$PC("http://api.duoshuo.com/threads/counts.jsonp?short_name=jokin&threads=index&callback=?", function(){
+  $PC.Log.info("Jsonp Call 3 Done");
+});
+
+// Normal Json Calls
+$PC("http://hello-xk.github.io/Postfile", function(data, response, jsonp){
+  $PC.Log.info("Json Call 1 Done");
+});
+
+$PC("http://hello-xk.github.io/Postfile", function(){
+  $PC.Log.info("Json Call 2 Done");
+});
+
+$PC("http://hello-xk.github.io/Postfile", function(){
+  $PC.Log.info("Json Call 3 Done");
+});
+
+
+// 5s later
+setTimeout(function(){
+  $PC.Log.info("");
+  $PC.Log.info("=== Test from cache ===");
+
+  // test jsonp call from cache
+  $PC("http://api.duoshuo.com/threads/counts.jsonp?short_name=jokin&threads=index&callback=?", function(){
+    $PC.Log.info("Jsonp Call 4 from cache Done");
+  });
+
+  // test json call from cache
+  $PC("http://hello-xk.github.io/Postfile", function(){
+    $PC.Log.info("Json Call 4 from cache Done");
+  });
+
+}, 5*1000);
+
+
+// 8s latter
+$PC.jsonp.timeout = 10000;
+setTimeout(function(){
+  $PC.Log.info("");
+  $PC.Log.info("=== Test error case ===");
+
+  // test jsonp error
+  $PC("http://api.duoshuo.com/threads/counts1.jsonp?short_name=&threads=index&callback=?", function(data, response, jsonp){
+  }, function(data, response, jsonp) {
+    $PC.Log.info("Jsonp Call Error === Timeout === Done");
+  });
+
+  // test json error
+  $PC("http://api.duoshuo.com/threads/counts.jsonp?short_name=jokin&threads=index", function(){}, function(){
+    $PC.Log.info("Json Call Error === Error === Done");
+  });
+
+}, 8*1000);
+
+
+// 20s later
+setTimeout(function(){
+  $PC.Log.info("");
+  $PC.Log.info("=== TEST Finish ===");
+}, 30*1000);
+
+</script>
+</html>

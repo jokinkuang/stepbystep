@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+{% include head.meta %}
+
+<link href='{{ site.w3c_url }}css/markdown.css' rel='stylesheet' type='text/css' />
+<link href='{{ site.w3c_url }}css/rouge.css' rel='stylesheet' type='text/css' />
+
+<style type="text/css">
+html {
+	display: block;
+	height: 100%;
+	overflow-y: scroll;
+}
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+.content {
+	line-height: 20px;
+	color: #413838;
+}
+.pin {
+	position: fixed;
+	right: 10px;
+	z-index: 100;
+	bottom: 40%;
+	display: none;
+}
+.pin span {
+	border: 1px solid #999999;
+  border-radius: 100%;
+  padding: 2px;
+}
+/****** post ******/
+.center-aside {
+	width: 60%;
+	margin-right: auto;
+	margin-left: auto;
+}
+.center-aside .header-image {
+	height: 200px;
+	background: url("{{ site.w3c_url }}images/bg.jpg");
+	background-position: center;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-o-background-size: cover;
+}
+.center-aside .author {
+	margin-top: 10px;
+	margin-bottom: 30px;
+	padding-left: 8px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #eeeeee;
+	overflow: hidden;
+	font-size: 15px;
+	color: #999999;
+}
+.center-aside .author .avatar {
+	float: left;
+	width: 80px;
+	height: 80px;
+	margin-right: 10px;
+	border-radius: 50%;
+}
+.center-aside .author .avatar img {
+	width: 100%;
+	height: 100%;
+	border-radius: 100%;
+	-webkit-border-radius: 100%;
+	box-sizing: border-box;
+}
+.center-aside .author .info {
+	margin-top: 7px;
+	letter-spacing: 1px;
+}
+.center-aside .author .info .talk{
+	margin: 0;
+	margin-top: 3px;
+}
+.center-aside .author .info .talk img{
+  vertical-align: initial;
+}
+.center-aside .title {
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 1.5;
+	margin: 10px 0;
+	text-align: center;
+}
+.center-aside .meta {
+	margin: 10px 0 20px 0;
+	text-align: center;
+}
+.center-aside .meta span {
+	position: relative;
+	top: 1px;
+	margin-right: 10px;
+	font-size: 13px;
+	color: #999999;
+}
+.center-aside .post {
+	padding: 0px 10px;
+	line-height: 1.5em;
+	color: #413838;
+}
+.post-footer {
+	text-align: center;
+  margin-top: 50px;
+  padding-bottom: 20px
+}
+.post-tags {
+	margin: 5px 10px;
+}
+.post-tags span.tag {
+	border: 1px solid #999999;
+  border-radius: 4px;
+  padding: 2px;
+	line-height: 1.8em;
+	margin-left: 5px;
+}
+.PageNavigation {
+  font-size: 14px;
+  display: block;
+  width: auto;
+  overflow: hidden;
+	padding: 0 5px;
+}
+.PageNavigation a {
+  display: block;
+  width: 50%;
+  float: left;
+  margin: 1em 0;
+}
+.PageNavigation .next {
+	float: right;
+  text-align: right;
+}
+.footer {
+  text-align: center;
+  margin-top: 50px;
+  padding-bottom: 50px
+}
+</style>
+<style type="text/css">
+ul.nostyle {
+	margin-left: 0;
+	padding-left: 20px;
+	list-style: none;
+}
+a, a:hover, a:visited {
+	color: #bf8b8b;
+	text-decoration: none;
+	cursor: auto;
+}
+a.blue-link, a.blue-link:hover, a.blue-link:visited {
+	color: #4094c7;
+}
+a.grey-link, a.grey-link:hover, a.grey-link:visited {
+	color: #999999;
+}
+</style>
+<style type="text/css">
+@media (max-width: 1366px)
+{
+	.center-aside {
+		width: 800px;
+	}
+}
+@media (max-width: 768px)
+{
+	.center-aside {
+		width: 100%;
+	}
+}
+</style>
+</head>
+
+<body>
+	{% assign _post = page %}
+	{% include post-image.liquid %}
+<img src="{{ post-image }}" style="display:none;"/>
+<div class="content">
+	<div class="pin"><span><a href="javascript:void(0);">up</a></span>
+	</div>
+	<div class="top-aside">
+	</div>
+	<div class="center-aside">
+		<div class="header-image">
+		</div>
+		<div class="author">
+				<div>
+	      <a class="avatar" href="{{ site.base }}/article">
+	        <img src="{{ site.w3c_url }}images/avator.jpg" alt="100"/>
+				</a>
+				</div>
+				<div class="info">
+					<span class="label">
+	          作者
+	      	</span>
+	      	<a class="author-name blue-link" href="{{ site.base }}/aboutme">
+	        	<span>{{ site.author }}</span>
+					</a>
+					<span style="margin-left: 10px;">{{ page.date | date:"%Y-%m-%d %H:%M:%S" }}</span>
+	      	<div>
+						<span>写了<a class="blue-link" href="{{ site.base }}/article"><i style="font-style:normal;" id="totalPosts">0</i>篇</a>文章</span>，
+	        	<span>共<i style="font-style:normal;" id="totalWords">0</i>字</span>，
+						<span>获得了<i style="font-style:normal;" id="totalComments">0</i>条评论</span>
+						<!-- <span>获得了<i style="font-style:normal;" id="totalLikes">0</i>个喜欢</span> -->
+	      	</div>
+					<div class="talk"><span id="shuoshuo">暂无说说</span><a class="blue-link" target="_parent" href="{{ site.base }}/#comments"> · 评论</a></div>
+				</div>
+    </div>
+		<div class="title">{{ page.title }}</div>
+		<div class="meta">
+            <span class="wordage">字数·{{ page.content | number_of_words }}</span>
+            <!-- <span class="views-count">阅读5448</span> -->
+            <span ><a class="grey-link post-data" target="_parent" href="#comments" data-method="comments" data-thread-key="{{ page.pid }}" data-text="评论·%s">评论0</a></span>
+						<span class="post-data" data-method="likes" data-thread-key="{{ page.pid }}" data-text="喜欢·%s">喜欢0</span>
+            <span class="post-data" data-method="reposts" data-thread-key="{{ page.pid }}" data-text="转发·%s">转发0</span>
+    </div>
+
+		<div class="post">
+			{{ content }}
+		</div>
+
+		<div class="post-footer">
+			<p>&copy; {{ site.title }}</p>
+		</div>
+
+		<div class="post-tags">
+			TAGS:
+			{% assign _post = page %}
+			{% include post-categories.liquid %}
+			{% for tag in post-categories %}
+			<span class="tag"><a href="{{ site.base }}/article?category={{ tag }}">{{ tag }}</a></span>
+			{% endfor %}
+		</div>
+
+		<div class="PageNavigation">
+		  {% if page.previous.url %}
+		    <a class="prev" href="{{ page.previous.url }}">&nbsp;&laquo; {{ page.previous.title }}</a>
+		  {% endif %}
+		  {% if page.next.url %}
+		    <a class="next" href="{{ page.next.url }}">{{ page.next.title }} &raquo;&nbsp;</a>
+		  {% endif %}
+		</div>
+
+		<div style="height: 20px;"></div>
+		<div class="ds-share flat" data-thread-key="{{ page.pid }}" data-title="{{ page.title }}" data-images="{{ image_url }}" data-content="{{ post.excerpt | strip | replace:'"', "'" | strip_newlines }}" data-url="{{ site.domain }}{{ page.url }}">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+      	<li ><span class="ds-more">分享到：</span></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+				<li><a class="ds-facebook" href="javascript:void(0);" data-service="facebook">Facebook</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ 		</div>
+		<!-- duoshuo -->
+		<div name="comments" id="comments">
+		<div class="ds-thread" data-thread-key="{{ page.pid }}" data-max-depth="{{ site.duoshuo_max_depth }}" data-title="{{ page.title }}" data-url="{{ site.domain }}{{ page.url }}"></div>
+		</div>
+	</div>
+</div>
+
+<!-- duoshuo -->
+{% include duoshuo.js %}
+
+<!-- jQuery -->
+<script type="text/javascript">
+	var sitefile = "{{ site.sitefile }}";
+</script>
+<script src="{{ site.jquery_url }}"></script>
+<script src="{{ site.w3c_url }}js/timeago.js"></script>
+<script src="{{ site.w3c_url }}js/pagecache.js"></script>
+<script src="{{ site.w3c_url }}js/jquery.duoshuo.js"></script>
+
+<script src="{{ site.w3c_url }}js/post.js"></script>
+<script>
+$(".pin").on("click", function(event) {
+    var target = $("html, body");
+    if( target.length ) {
+        event.preventDefault();
+        $("html, body").stop().animate({
+            scrollTop: target.offset().top
+        }, 1000);
+    }
+});
+$(window).scroll(function(event){
+	var top = $(window).scrollTop();
+	var target = $("body");
+	if ( target.length ) {
+		if ( target.scrollTop() > 2000 ) {
+			$(".pin").show();
+		} else {
+			$(".pin").hide();
+		}
+	}
+});
+</script>
+</body>
+</html>

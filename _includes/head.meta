@@ -1,0 +1,11 @@
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+<title>{% if page.title != "" %}{{ page.title | escape | append: " — " | append: site.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+<meta name="description" content="{% if page.excerpt != "" %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+
+<link rel="icon" href="{{ site.w3c_url }}images/sicon.png" type="image/x-icon" />
+<link rel="shortcut icon" href="{{ site.w3c_url }}images/sicon.png" type="image/x-icon" />
+<link rel="canonical" href="{{ site.domain }}{{ page.url | replace:'index.html',''">
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.domain }}/db/feed.xml">

@@ -1,0 +1,48 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+<div> test function call init with Data-Attr </div>
+<div class="comments" data-short-name='jokin' data-thread-key='index' data-text='通过data-attr设置，评论数%s(Done)' >评论 0</div>
+<div class="likes" data-short-name='jokin' data-thread-key='index' data-text='通过data-attr设置，喜欢数%s(Done)' >喜欢 0</div>
+
+<div class="testByList" data-method="comments" data-short-name='jokin' data-thread-key='index' data-text='集合处理，data-method为comments，data-thread-key为index，评论数%s(Done)' >喜欢 0</div>
+<div class="testByList" data-method="likes" data-short-name='jokin' data-thread-key='index' data-text='集合处理，data-method为likes，data-thread-key为index，喜欢数%s(Done)' >喜欢 0</div>
+<div class="testByList" data-method="likes" data-short-name='jokin' data-thread-key='index2' data-text='集合处理，data-method为likes，data-thread-key为index2，喜欢数%s(Done)' >喜欢 0</div>
+
+<br>
+<div> test function call init with settings or parameters </div>
+<div class="testWithSettings">喜欢 0</div>
+<div class="testWithSettingsButOverrideByData" data-text='通过data-attr覆盖settings，喜欢数%s(Done)'>喜欢 0</div>
+<div class="testWithSettingsButOverrideByParam">喜欢 0</div>
+<div class="testWithSettingsMore" data-text='通过data-attr设置，但会被参数覆盖，喜欢数%s'>喜欢 0</div>
+
+<br>
+<div> test function call without init (Cause Error)</div>
+<div class="testWithoutInitShortName" >因为没有初始化shortName而失效(Done)</div>
+<div class="testWithoutInitThreadKey" >因为没有初始化threadKey而失效(Done)</div>
+
+<br>
+<div>If all is Done then All is Done !</div>
+
+<script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+<script src="pagecache.js"></script>
+<script src="duoshuo.js"></script>
+<script>
+
+  $(".comments").duoshuo("comments");
+  $(".likes").duoshuo("likes");
+  $(".testByList").duoshuo();
+
+  $.Duoshuo.settings = {shortName: "jokin", text: "通过settings设定，喜欢数%s(Done)", threadKey: "index"};
+  $(".testWithSettings").duoshuo("likes", "");
+  $(".testWithSettingsButOverrideByData").duoshuo("likes");
+  $(".testWithSettingsButOverrideByParam").duoshuo("likes", "通过参数覆盖settings，喜欢数%s(Done)");
+  $(".testWithSettingsMore").duoshuo("likes", "优先级：参数传递 > data-attr > settings，喜欢数%s(Done)");
+
+  $.Duoshuo.settings = {};
+  $(".testWithoutInitShortName").duoshuo("likes");
+  $.Duoshuo.settings = {shortName: "jokin"};
+  $(".testWithoutInitThreadKey").duoshuo("likes", "喜欢数%s");
+
+</script>
+</html>

@@ -1,0 +1,41 @@
+{% comment %}
+Usage:
+1. assign _post = the post;
+2. {% include post-categories.liquid %}
+3. access post-categories array
+{% endcomment %}
+
+
+{% comment %}第一部分，获取文章的子目录+categories（优先级：目录 > categories变量）{% endcomment %}
+{% assign list = _post.path|split:"/"; %}
+{% assign categories = _post.categories|join:"," %}
+{% assign subdirs = "" %}
+{% for item in list %}
+	{% assign index = list.size|minus:1 %}
+	{% if forloop.index0 > 0 and forloop.index0 < index %}
+		{% if subdirs == "" %}
+			{% assign subdirs = item %}
+		{% else %}
+			{% assign subdirs = subdirs |append:"," |append:item %}
+		{% endif %}
+	{% endif %}
+{% endfor %}
+
+{% comment %}子目录优先级更高，放在前面{% endcomment %}
+{% if subdirs != "" %}
+	{% assign categories = categories |prepend:"," |prepend:subdirs %}
+{% endif %}
+{% assign categories = categories | split:"," %}
+
+{% comment %}第二部分，去重，因为uniq函数无法执行，因此写个函数去重{% endcomment %}
+{% assign result = "" %}
+{% for item in categories %}
+	{% if result contains item %}
+		{% continue %}
+	{% elsif result == "" %}
+		{% assign result = item %}
+	{% else %}
+		{% assign result = result | append:"," | append: item %}
+	{% endif %}
+{% endfor %}
+{% assign post-categories = result | split:"," %}

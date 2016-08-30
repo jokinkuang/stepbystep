@@ -1,0 +1,106 @@
+---
+# Posts List
+---
+{
+  "posts":
+  [
+  {% assign totalCategories = "" %}
+  {% for post in site.posts %}
+    {% comment %}第一部分，获取文章的子目录+categories（优先级：目录 > categories变量）{% endcomment %}
+    {% assign list = post.path|split:"/"; %}
+    {% assign categories = post.categories|join:"," %}
+    {% assign subdirs = "" %}
+    {% for item in list %}
+      {% assign index = list.size|minus:1 %}
+      {% if forloop.index0 > 0 and forloop.index0 < index %}
+        {% if subdirs == "" %}
+          {% assign subdirs = item %}
+        {% else %}
+          {% assign subdirs = subdirs |append:"," |append:item %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% if subdirs != "" %}
+      {% assign categories = categories |prepend:"," |prepend:subdirs %}
+    {% endif %}
+    {% assign categories = categories | split:"," %}
+
+    {% comment %}第二部分，去重，因为uniq函数无法执行，因此写个函数去重{% endcomment %}
+    {% assign result = "" %}
+    {% for item in categories %}
+      {% if result contains item %}
+        {% continue %}
+      {% elsif result == "" %}
+        {% assign result = item %}
+      {% else %}
+        {% assign result = result | append:"," | append: item %}
+      {% endif %}
+    {% endfor %}
+
+    {% comment %}增加到"总目录"{% endcomment %}
+    {% if post == site.posts.first %}
+      {% assign totalCategories = totalCategories | append: result %}
+    {% else %}
+      {% assign totalCategories = totalCategories | append:"," | append: result %}
+    {% endif %}
+
+    {% comment %}第三部分，处理新的目录数组{% endcomment %}
+    {% assign categories = result | split:"," %}
+    {
+      "title": "{{ post.title }}",
+      "words": "{{ post.content | number_of_words }}",
+      "author": "{{ site.author }}",
+      "date": "{{ post.date | date:"%Y-%m-%d %H:%M:%S" }}",
+      "url": "{{ post.url }}",
+      "pid": "{{ post.pid }}",
+      {% comment %}没有赋值为null，静态化后结果为""，但是判断时null != ''为true，所以这里不能为or{% endcomment %}
+      "image": {% if post.image and post.image != '' %}
+                  {% if post.image contains 'http:' or post.image contains 'https:' %}
+                    "{{ post.image }}"
+                  {% else %}
+                    "{{ site.postImage_url }}{{ post.image }}"
+                  {% endif %}
+              {% else %}
+                ""
+              {% endif %},
+      "categories":
+      [
+        {% if categories.size > 0 %}
+            "{{ categories | join: '","'}}"
+        {% endif %}
+      ],
+      "excerpt":
+      {% assign excerpt = post.excerpt | strip %}
+      {% if excerpt != "" %}
+        "{{ post.excerpt | markdownify | strip | strip_newlines | strip_html | replace:"\", "\\\\" | replace:'"', '\"' | append:"..." | truncate:160 }}"    {% comment %}truncatewords不太识别中文，因为它是以空格为单词分割{% endcomment %}
+      {% else %}
+        ""
+      {% endif %}
+    }
+    {% if post != site.posts.last %}
+      ,
+    {% endif %}
+  {% endfor %}
+  ],
+
+  {% comment %}"总目录"去重{% endcomment %}
+  {% assign result = "" %}
+  {% assign categories = totalCategories | split:"," %}
+  {% for item in categories %}
+    {% if result contains item %}
+      {% continue %}
+    {% elsif result == "" %}
+      {% assign result = item %}
+    {% else %}
+      {% assign result = result | append:"," | append: item %}
+    {% endif %}
+  {% endfor %}
+  {% assign categories = result | split:"," %}
+
+  "categories":
+  [
+    {% if categories.size > 0 %}
+        "{{ categories | join: '","'}}"
+    {% endif %}
+  ]
+}

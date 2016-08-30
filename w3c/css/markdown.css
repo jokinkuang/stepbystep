@@ -1,0 +1,71 @@
+/* This is the css for the html created by kramdown
+ * This css is copy from "jekyll new project"
+ * jokinKuang
+ */
+
+/** Reset some basic elements */
+body, h1, h2, h3, h4, h5, h6, p, blockquote, pre, hr, dl, dd, ol, ul, figure { margin: 0; padding: 0; }
+
+/** Basic styling */
+body { /* font: 400 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif; */ /* color: #111111; */ background-color: #fdfdfd; -webkit-text-size-adjust: 100%; -webkit-font-feature-settings: "kern" 1; -moz-font-feature-settings: "kern" 1; -o-font-feature-settings: "kern" 1; font-feature-settings: "kern" 1; font-kerning: normal; }
+
+/** Set `margin-bottom` to maintain vertical rhythm */
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul, ol, dl, figure { margin-bottom: 15px; }
+
+/** paragraph */
+p { font-size: 17px; word-break: break-word; word-spacing: 1px; letter-spacing: 0.5px; }
+
+/** Images */
+img { max-width: 100%; vertical-align: middle; }
+
+/** Figures */
+figure > img { display: block; }
+
+figcaption { font-size: 15px; }
+
+/** Lists */
+ul, ol { margin-left: 30px; }
+
+li > ul, li > ol { margin-bottom: 0; }
+
+/** Headings */
+h1, h2, h3, h4, h5, h6 { font-weight: 400; }
+
+/** Links jokin@2016*/
+/*a { color: #2a7ae2; text-decoration: none; }
+a:visited { color: #1756a9; }
+a:hover { color: #111111; text-decoration: underline; }*/
+
+/** Blockquotes */
+blockquote { color: #b96d6d; border-left: 4px solid #d6a6a6; padding-left: 15px; font-size: 17px; letter-spacing: -1px; background-color: #fef3f3;}
+blockquote > :last-child { margin-bottom: 0; }
+
+/** Code formatting */
+pre, code { font-size: 16px; border: 1px solid #e8e8e8; border-radius: 3px; background-color: rgba(255, 239, 239, 0.65); }
+
+code { padding: 2px 5px; background: #FFC8C8; }
+
+pre { padding: 8px 12px; overflow-x: auto; }
+pre > code { border: 0; padding-right: 0; padding-left: 0; background: none;}
+
+table {
+   width: 100%;
+   overflow: auto;
+   display: block;
+   border-spacing: 0;
+   border-collapse: collapse;
+}
+table th {
+   font-weight: bold;
+}
+table th, table td {
+   border: 1px solid #ddd;
+   padding: 6px 13px;
+}
+table tr {
+   border-top: 1px solid #ccc;
+   background-color: #fff;
+}
+table tr:nth-child(2n) {
+   background-color: #f8f8f8;
+}

@@ -1,0 +1,36 @@
+{% comment %}
+Usage:
+1. {% include total-categories.liquid %}
+2. access total-categories array
+{% endcomment %}
+
+
+{% comment %}因为遍历的前提是posts，所以空目录是不会被加入到categories里面！{% endcomment %}
+{% assign totalCategories = "" %}
+{% for post in site.posts %}
+
+  {% assign _post = post %}
+  {% include post-categories.liquid %}
+  {% assign categories = post-categories | join: "," %}
+
+  {% comment %}增加到"总目录"{% endcomment %}
+  {% if post == site.posts.first %}
+    {% assign totalCategories = totalCategories | append: categories %}
+  {% else %}
+    {% assign totalCategories = totalCategories | append:"," | append: categories %}
+  {% endif %}
+{% endfor %}
+
+{% comment %}"总目录"去重{% endcomment %}
+{% assign result = "" %}
+{% assign categories = totalCategories | split:"," %}
+{% for item in categories %}
+  {% if result contains item %}
+    {% continue %}
+  {% elsif result == "" %}
+    {% assign result = item %}
+  {% else %}
+    {% assign result = result | append:"," | append: item %}
+  {% endif %}
+{% endfor %}
+{% assign total-categories = result | split:"," %}

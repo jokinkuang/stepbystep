@@ -1,0 +1,15 @@
+{% comment %}
+Usage:
+1. assign _post = the post;
+2. {% include post-image.liquid %}
+3. access post-image string
+{% endcomment %}
+
+{% if _post.image and _post.image != '' %}
+		{% if _post.image contains 'http:' or _post.image contains 'https:' %}
+		{% 		assign image_url = _post.image  %}
+		{% else %}
+		{%		assign image_url = site.domain | append: site.postImage_url | append: _post.image %}
+		{% endif %}
+{% endif %}
+{% assign post-image = image_url %}

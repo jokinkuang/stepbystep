@@ -1,0 +1,14 @@
+---
+# Site Data
+---
+{
+  "site":
+  {
+  {% assign totalWords = 0 %}
+  {% for post in site.posts %}
+    {% assign totalWords = post.content | number_of_words | plus: totalWords %}
+  {% endfor %}
+  "totalPosts": "{{ site.posts.size }}",
+  "totalWords": "{{ totalWords }}"
+  }
+}

@@ -1,0 +1,315 @@
+---
+---
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>article list — {{ site.title }}</title>
+{% include head.meta %}
+
+<style type="text/css">
+html {
+	display: block;
+	height: 100%;
+	overflow-y: scroll;
+}
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+.content {
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+}
+.left-aside {
+	width: 25.0%;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	background-image: url({{ site.w3c_url }}images/bg.jpg);
+	background-position: center;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-o-background-size: cover;
+}
+.left-aside .remark {
+	position: absolute;
+	bottom: 30px;
+	padding-left: 30px;
+	color: white;
+}
+.left-aside .copyright {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	padding: 0;
+	color: white;
+	text-align: center;
+}
+.left-aside .copyright p {
+	margin: 0;
+	color: rgba(255, 255, 255, 0.2);
+}
+.center-aside {
+	margin-left: 25.0%;	/* left-aside */
+	-webkit-margin-start: 25.0%;
+	width: 55.0%;
+	min-height: 30px;
+	float: left;
+}
+/*********************category*************************/
+.center-aside .top {
+	position: fixed;
+	top: 0;
+	width: 55%;
+	background-color: white;
+	/*background: rgba(255, 0, 0, 0.5);;*/
+	border-width: 2px;
+	box-sizing: border-box;
+	z-index: 1;
+}
+.center-aside .category {
+	padding-left: 32px;
+	padding: 13px 0 13px 18px;
+	margin: 5px 0;
+}
+.center-aside .category li {
+	float: left;
+	margin: 0px 15px 15px 0;
+}
+.center-aside .category li.active a {
+	color: white;
+	border-color: #e78170;
+	background: #ffb0b0;
+}
+.center-aside .category li a {
+	padding: 5px 10px;
+	border: 1px solid #d9d9d9;
+	border-radius: 14px;
+	box-sizing: border-box;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 1.5;
+}
+/*******************article-list***********************/
+/* choose all .bottom in .center-aside */
+.center-aside .bottom {
+	margin-top: 120px;
+}
+/* choose only the li children whose parent is .article-list */
+.article-list>li {
+	position: relative;
+	width: 100%;
+	padding-right: 10px;
+	padding-bottom: 30px;
+	margin: 0 0 17px;
+	border-bottom: 1px dashed #d9d9d9;
+	box-sizing: border-box;
+	word-wrap: break-word;
+}
+.article-list>.has-img {
+
+}
+.article-list>.has-img>.wrap-img {
+	float: right;
+	width: 100px;
+	height: 100px;
+}
+.article-list>.has-img>.wrap-img>img {
+	width: 100%;
+	height: 100px;
+	width: auto\9;
+	border-radius: 6px;
+	border: 1px solid #eeeeee;
+	box-sizing: border-box;
+}
+.article-list .time {
+	margin-left: 3px;
+	color: #717171;
+}
+.article-list .title {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	margin-left: 0;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 1.5;
+	color: #555555;
+}
+.article-list .list-top {
+	margin: 8px 0;
+	font-size: 12px;
+}
+.article-list .list-footer {
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 20px;
+	color: #999999;
+}
+.article-list .excerpt {
+	margin-top: 13px;
+	color: #413838;
+}
+.right-aside {
+	width: 20%;
+	float: left;
+}
+
+.talk {
+	width: 100%;
+	position: fixed;
+	z-index: 3;
+	bottom: 12px;
+	left: 0;
+	overflow: hidden;
+	color: #ffffff;
+	zoom: 1;
+	margin: 0;
+	text-align: center;
+}
+</style>
+<style type="text/css">
+ul.nostyle {
+	margin-left: 0;
+	padding-left: 20px;
+	list-style: none;
+}
+a, a:hover, a:visited {
+	color: #555555;
+	text-decoration: none;
+	cursor: auto;
+}
+
+a.blue-link, a.blue-link:hover, a.blue-link:visited {
+	color: #4094c7;
+}
+a.grey-link, a.grey-link:hover, a.grey-link:visited {
+	color: #999999;
+}
+a.dark-grey-link, a.dark-grey-link:hover, a.dark-grey-link:visited {
+	color: #717171;
+}
+a.light-white, a.light-white:hover, a.light-white:visited {
+	color: rgba(255, 255, 255, 0.25);
+}
+</style>
+<style type="text/css">
+@media (max-width: 768px)
+{
+	.left-aside {
+		display: none;
+	}
+	.center-aside {
+		width: 100%;
+		margin: auto;
+	}
+	.center-aside .top {
+		width: 100%;
+	}
+	.center-aside .bottom {
+		width: 100%;
+	}
+	.right-aside{
+		width: 100%;
+	}
+}
+</style>
+</head>
+
+<body>
+<div class="content">
+	<div class="left-aside">
+		<div class="remark">
+			<h1>{{ site.title }}</h1>
+			<h3>Don't be afraid</h3>
+			<p>一步一个脚印</p>
+		</div>
+		<div class="copyright">
+			<p>Thanks to <a class="light-white" href="https://github.com/">Github</a>, <a class="light-white" href="https://jekyllrb.com/">Jekyll</a> and <a class="light-white" href="https://github.com/jokinkuang/stepbystep/">StepByStep</a></p>
+		</div>
+	</div>
+	<div class="center-aside">
+		<div id="top-menu" class="top">
+			<ul class="nostyle category">
+						<li data="All"><a href="?category=">All</a></li>
+				{%comment%}通过liquid获取文件夹作为目录{%endcomment%}
+				{% include total-categories.liquid %}
+				{% for item in total-categories %}
+					{% if forloop.index0 == 0 %}
+      			<li data="{{ item }}"><a href="?category={{ item }}">{{ item }}</a></li>
+					{% else %}
+      			<li data="{{ item }}"><a href="?category={{ item }}">{{ item }}</a></li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+		<div id="middle-panel" class="bottom">
+		<ul class="nostyle article-list">
+			<script id="post-list" type="text/html">
+				<% for(var i = 0; i < posts.length; i++) { %>
+				<li class="has-img">
+					<% if ( posts[i].image ) { %>
+						<a class="wrap-img" href="<%= posts[i].url %>">
+							<img src="<%= posts[i].image %>" alt="300">
+						</a>
+					<% } %>
+					<div>
+						<p class="list-top">
+							<a class="author-name dark-grey-link" target="_parent" href="{{ site.base }}/aboutme"><%= posts[i].author %></a>
+							<em>&nbsp;·</em>
+							<span class="time" date-time="<%= posts[i].date %>"></span>
+						</p>
+						<h4 class="title">
+							<a target="_parent" href="<%= posts[i].url %>"><%= posts[i].title %></a>
+						</h4>
+						<div class="list-footer">
+							<!--<a class="grey-link" target="_parent" href="<%=posts[i].url%>">阅读 5915</a>-->
+							<span>字数 <%= posts[i].words %></span>
+							<a class="grey-link post-data" target="_parent" href="<%= posts[i].url %>#comments" data-method="comments" data-thread-key="<%= posts[i].pid %>" data-text=" · 评论 %s"> · 评论 0</a>
+							<span class="post-data" data-method="likes" data-thread-key="<%= posts[i].pid %>" data-text=" · 喜欢 %s"> · 喜欢 0</span>
+							<span class="post-data" data-method="reposts" data-thread-key="<%= posts[i].pid %>" data-text=" · 转发 %s"> · 转发 0</span>
+						</div>
+						<% if ( posts[i].excerpt ) { %>
+						<div class="excerpt">
+							{%comment%}:=表示HTML不转义，baiduTemplate默认的=是HTML转义的，转义后&gt;才会输出">"{%endcomment%}
+							<%:= posts[i].excerpt %>
+						</div>
+						<% } %>
+					</div>
+				</li>
+				<% } %>
+			</script>
+		</ul>
+		</div>
+	</div>
+	<div class="right-aside">
+		<!-- duoshuo -->
+		<div class="ds-thread" data-thread-key="index" data-max-depth="{{ site.duoshuo_max_depth }}" data-title="{{ site.title }}" data-url="{{ site.domain }}{{ page.url }}"></div>
+	</div>
+</div>
+<div class="talk">Don't be afraid, Step By Step</div>
+<div class="footer"></div>
+
+<!-- duoshuo -->
+{% include duoshuo.js %}
+
+<!-- baiduTemplate -->
+<script type="text/javascript" src="{{ site.baiduTemplate_url }}"></script>
+
+<!-- jQuery -->
+<script type="text/javascript">
+	var postfile = "{{ site.postfile }}";
+</script>
+<script src="{{ site.jquery_url }}"></script>
+<script src="{{ site.w3c_url }}js/timeago.js"></script>
+<script src="{{ site.w3c_url }}js/pagecache.js"></script>
+<script src="{{ site.w3c_url }}js/jquery.duoshuo.js"></script>
+
+<script src="{{ site.w3c_url }}js/article.js"></script>
+
+</body>
+</html>

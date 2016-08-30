@@ -1,0 +1,185 @@
+---
+---
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<title>index — {{ site.title }}</title>
+{% include head.meta %}
+
+<style type="text/css">
+html {
+	display: block;
+	height: 100%;
+	overflow-y: scroll;
+}
+body {
+	display: block;
+	height: 100%;
+	margin: 0 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.header {
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 100;
+	width: 590px;
+	font-size: 13px;
+	text-align: right;
+	color: #999;
+}
+.header a.menu {
+	position: relative;
+	height: 32px;
+	line-height: 32px;
+	margin-left: 10px;
+	margin-right: 16px;
+	color: #ffffff;
+	text-decoration: underline;
+	outline: none;
+	display: inline-block;
+	text-shadow: none;
+}
+.header-bg {
+	display: block;
+	background-image: url("{{ site.w3c_url }}images/bg.jpg");
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-position: center 0;
+	background-repeat: no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-o-background-size: cover;
+	zoom: 1;
+}
+.content {
+	position: relative;
+	z-index: 1;
+	width: 100%;
+}
+.talk {
+	width: 100%;
+	position: absolute;
+	z-index: 3;
+	bottom: 12px;
+	left: 0;
+	overflow: hidden;
+	color: #ffffff;
+	zoom: 1;
+	margin: 0;
+	text-align: center;
+}
+.link {
+  text-decoration: none;
+  color: white;
+}
+</style>
+<style type="text/css">
+@media (max-width: 768px)
+{
+
+}
+</style>
+<style type="text/css">
+@keyframes fadein
+{
+	from { opacity:0; }
+	to { opacity:1; }
+}
+
+@-moz-keyframes fadein /* Firefox */
+{
+	from { opacity:0; }
+	to { opacity:1; }
+}
+
+@-webkit-keyframes fadein /* Safari 和 Chrome */
+{
+	from { opacity:0; }
+	to { opacity:1; }
+}
+
+@-o-keyframes fadein /* Opera */
+{
+	from { opacity:0; }
+	to { opacity:1; }
+}
+
+.fadein {
+	animation:fadein 3s;
+	-moz-animation:fadein 3s; /* Firefox */
+	-webkit-animation:fadein 3s; /* Safari and Chrome */
+	-o-animation:fadein 3s; /* Opera */
+}
+}
+</style>
+</head>
+
+<body>
+<div class="header">
+	<!-- <a class="menu" href="{{ site.base }}/article.html">Enter</a> -->
+</div>
+<div class="header-bg fadein"></div>
+<div class="content">
+	<!-- duoshuo -->
+  <div name="comments" id="comments">
+  <div class="ds-thread" data-thread-key="shuoshuo" data-max-depth="{{ site.duoshuo_max_depth }}" data-title="{{ site.title }}" data-url="{{ site.domain }}"></div>
+  </div>
+</div>
+<div class="talk">
+	<a class="link" href="{{ site.base }}/article.html">StepIn :)</a>
+	<p>Don't be afraid, Step By Step</p>
+</div>
+<div class="footer"></div>
+
+<!-- duoshuo -->
+{% include duoshuo.js %}
+
+<!-- jQuery -->
+<script src="{{ site.jquery_url }}"></script>
+
+<script>
+$(function(){
+
+  var executeOnLoad = function(selector, loaded_callback) {
+    // console.log("[executeOnLoad] running with selector: " + selector);
+    var $elements = $(selector);
+    if($elements.length) {
+      $elements.each(function(){
+        loaded_callback.call($(this));
+      });
+    } else {
+      setTimeout(function() { executeOnLoad(selector, loaded_callback); }, 100);
+    }
+  }
+
+  // jquery 3.x remove selector method so I can not get the selector inner
+  // OR I can change it to $(selecor).executeOnLoad(function(){ // code here });
+  executeOnLoad(".ds-meta", function(){ this.remove(); });
+  executeOnLoad("#ds-hot-posts", function(){ this.remove(); });
+  executeOnLoad(".ds-comments-tab-duoshuo", function(){ this.text("博主的说说"); });
+  executeOnLoad(".ds-replybox", function(){
+    // Don't forget the length
+    if (this.find("img[alt="+ duoshuoUserName +"]").length) {
+      this.show();
+    } else {
+      this.remove();
+    }
+  });
+
+	// if found .ds-comments-info then consider comments has loaded
+	executeOnLoad(".ds-comments-info", function(){
+		if ( $(window.location.hash).length > 0 ) {
+			$(window).scrollTop( $(window.location.hash).offset().top );
+		}
+	});
+
+
+});
+</script>
+</body>
+</html>
