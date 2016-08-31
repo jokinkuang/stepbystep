@@ -36,6 +36,8 @@ markdown: kramdown
 kramdown:
   input: GFM
   hard_wrap: true # a newline in markdown text would be changed to <br>
+gems:
+  - jemoji
 
 # Following is got in Github Help With Configuring Jekyll
 
