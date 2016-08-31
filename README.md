@@ -1,4 +1,4 @@
-# stepbystep
+# stepbystep :feet:
 A jekyll theme, simple and clear
 
 ## Preview
