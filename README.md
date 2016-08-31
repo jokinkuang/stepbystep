@@ -12,6 +12,7 @@ A jekyll theme, simple and clear
 
 ## Install
 assume the github username is "hello" then:  
+
 1. create a repository named "hello.github.io"  
 2. clone this repository  
   `git clone https://github.com/jokinkuang/stepbystep.git`  
@@ -19,14 +20,32 @@ assume the github username is "hello" then:
   `git remote set-url origin https://github.com/hello/hello.github.io.git`  
   `git push origin master`  
 4. browse "hello.github.io"  
+
 > if your github username is "world" then replace upper "hello" all to "world"  
 
 ## Custom Domain  
 if you want to visit "www.hello.com" instead of "hello.github.io" then:  
+
 1. create a file named "CNAME" (the file is already exist)  
-2. add following to the "CNAME"  
+2. buy the "www.hello.com" domain  
+3. add following to the "CNAME"  
   `www.hello.com`  
-3. go to the Shop where your domain bought and set the Domain DNS to:  
-  | prefix | record-type | host |  
-  | ------ | ------ | ------ |  
-  | www | CNAME | hello.github.io |  
+4. go to the Shop where your domain bought and set the Domain DNS to:  
+  | prefix | record-type |      host       |  
+  |   www  |   CNAME     | hello.github.io |  
+5. wait a long long time  
+
+## Custom Your Site  
+1. you need a [duoshuo](www.duoshuo.com) account  
+2. you need a [google-analytics](https://www.google.com/analytics/) account  
+3. all settings are in `_config.yml` 
+
+## Other  
+whoever use this theme please add your site to the [wiki](https://github.com/jokinkuang/stepbystep/wiki)  
+
+## How It works  
+visit [jokinkuang.github.io](http://jokinkuang.github.io)
+
+## License  
+Under The [MIT](https://tldrlegal.com/license/mit-license) License
+
