@@ -1,5 +1,5 @@
-# stepbystep :feet:
-A jekyll theme, simple and clear
+# stepbystep  
+A jekyll theme, simple and clear, compatible with PC iPad and Phone (RWD)
 
 ## Preview
 #### PC or Pad
