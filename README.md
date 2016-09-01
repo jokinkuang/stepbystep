@@ -10,6 +10,13 @@ A jekyll theme, simple and clear, compatible with PC iPad and Phone (RWD)
 <img style="width:50%;" src="https://github.com/jokinkuang/stepbystep/raw/master/mobile2.png"></img>
 </div>
 
+## Feature  
+
+1. Compatible with PC iPad and Phone (RWD)
+2. Support blogger mood-talk(说说)
+3. Support post subdirs as post categories  
+  `_post/linux/nodejs/2016-9-1-About-Nodejs.md => linux and nodejs would merge into the post categories`
+
 ## Install
 assume the github username is "hello" then:  
 
