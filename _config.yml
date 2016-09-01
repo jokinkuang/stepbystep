@@ -8,7 +8,7 @@ description: > # this means to ignore newlines until "baseurl:"
   Google search results) and in your feed.xml site description.
 
 
-# Site URL NOTE: if your site is base on subdir /blog you can change it to "www.XXX.com/blog"
+# Site URL NOTE: if your site is base on subdir /blog you should change base to "/blog"
 domain: "http://yourdomain.github.io" # the domain URL for your site
 base: ""  # the relative path that different with domain so you can test locally
 
