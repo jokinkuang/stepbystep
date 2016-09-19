@@ -41,6 +41,7 @@ if you want to visit "www.hello.com" instead of "hello.github.io" then:
   | prefix | record-type |      host       |  
   |   www  |   CNAME     | hello.github.io |  
 5. wait a long long time  
+6. browse "www.hello.com"
 
 ## Custom Your Site  
 1. you need a [duoshuo](www.duoshuo.com) account  
