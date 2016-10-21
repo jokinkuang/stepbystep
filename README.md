@@ -44,7 +44,7 @@ if you want to visit "www.hello.com" instead of "hello.github.io" then:
 6. browse "www.hello.com"
 
 ## Custom Your Site  
-1. you need a [duoshuo](www.duoshuo.com) account  
+1. you need a [duoshuo](http://www.duoshuo.com) account  
 2. you need a [google-analytics](https://www.google.com/analytics/) account  
 3. all settings are in `_config.yml` 
 
