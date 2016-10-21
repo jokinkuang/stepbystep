@@ -14,7 +14,7 @@ base: ""  # the relative path that different with domain so you can test locally
 
 # Source URL NOTE: end with / cause it's [URL + FILE]
 w3c_url: "/w3c/"  # the base url of css js and images
-postImage_url: "/w3c/images/" # the base url of post images
+images_url: "/w3c/images/" # the base url of post images
 postfile: "/db/Postfile" # the Database
 sitefile: "/db/Sitefile" # the Database
 

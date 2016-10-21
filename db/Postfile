@@ -58,7 +58,7 @@
                   {% if post.image contains 'http:' or post.image contains 'https:' %}
                     "{{ post.image }}"
                   {% else %}
-                    "{{ site.postImage_url }}{{ post.image }}"
+                    "{{ site.images_url }}{{ post.image }}"
                   {% endif %}
               {% else %}
                 ""

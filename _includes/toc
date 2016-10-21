@@ -1,2 +1,9 @@
+{% comment %}
+使用markdown语法会被添加到TOC里面，所以不能使用##
+而使用html语法则不会被添加到TOC里面，所以使用了<h2>
+{% endcomment %}
+
+<h2>目录</h2>
+
 * it doesn't matter what you write here, it would not show
 {:toc}

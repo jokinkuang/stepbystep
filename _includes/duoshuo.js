@@ -6,7 +6,6 @@
 
   ga('create', '{{ site.google_analytics_id }}', 'auto');
   ga('send', 'pageview');
-
 </script>
 <script type="text/javascript">
   var duoshuoQuery = {short_name:"{{ site.duoshuo_short_name }}"};

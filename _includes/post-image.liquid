@@ -9,7 +9,7 @@ Usage:
 		{% if _post.image contains 'http:' or _post.image contains 'https:' %}
 		{% 		assign image_url = _post.image  %}
 		{% else %}
-		{%		assign image_url = site.domain | append: site.postImage_url | append: _post.image %}
+		{%		assign image_url = site.domain | append: site.images_url | append: _post.image %}
 		{% endif %}
 {% endif %}
 {% assign post-image = image_url %}
