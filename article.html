@@ -196,6 +196,9 @@ a.dark-grey-link, a.dark-grey-link:hover, a.dark-grey-link:visited {
 a.light-white, a.light-white:hover, a.light-white:visited {
 	color: rgba(255, 255, 255, 0.25);
 }
+a.white, a.white:hover, a.white:visited {
+	color: white;
+}
 </style>
 <style type="text/css">
 @media (max-width: 768px)
@@ -224,7 +227,7 @@ a.light-white, a.light-white:hover, a.light-white:visited {
 <div class="content">
 	<div class="left-aside">
 		<div class="remark">
-			<h1>{{ site.title }}</h1>
+			<a class="white" href="{{ site.base }}/"><h1>{{ site.title }}</h1></a>
 			<h3>Don't be afraid</h3>
 			<p>一步一个脚印</p>
 		</div>
@@ -287,6 +290,10 @@ a.light-white, a.light-white:hover, a.light-white:visited {
 		</div>
 	</div>
 	<div class="right-aside">
+		<!-- RSS -->
+		<a style="float: right;" href="{{ site.base }}/feed.xml" target="_blank">
+			<img style="margin-top: 10px; margin-right: 10px;" src="{{ site.images_url }}rss.svg" width="20px" alt="" border="0"/>
+		</a>
 		<!-- duoshuo -->
 		<div class="ds-thread" data-thread-key="index" data-max-depth="{{ site.duoshuo_max_depth }}" data-title="{{ site.title }}" data-url="{{ site.domain }}{{ page.url }}"></div>
 	</div>
