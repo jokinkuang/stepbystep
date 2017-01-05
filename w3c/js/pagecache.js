@@ -104,13 +104,15 @@
 
     // Get From PageCache
     if (! isForce) {
+      // cache hit with data
       if (PageCache.cache[url] && PageCache.cache[url].state == 1) {
         Log.debug("cache hit: " + url);
         if (callback) {
-          callback(PageCache.cache[url]);
+          PageCache.cache[url].fromCacheCall(callback);
         }
         return this;
       }
+      // cache hit without data
       if (PageCache.cache[url] && PageCache.cache[url].state == 0) {
         Log.debug("cache hit but still requesting: " + url);
         if (callback) {
@@ -184,6 +186,14 @@
             this.errFuns[i](this.state, this.jsonp);
           }
         }
+      }
+    };
+    this.fromCacheCall = function(callback) {
+      Log.debug("fromCacheCall>>", this);
+      if (this.type === 'json') {
+        callback(this.json, this.state, this.xmlhttp);
+      } else if (this.type === 'jsonp') {
+        callback(this.json, this.state, this.jsonp);
       }
     };
   }

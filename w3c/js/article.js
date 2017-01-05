@@ -33,18 +33,8 @@ $(document).ready(function(){
   var g_category = getUrlParam('category');
   //console.log(g_category);
 
-  $.ajax({
-    type: "get",
-    url: postfile,
-    dataType: "json",
-    success: function (data) {
-      var posts = getPostsWithCategory(data, g_category);
-      loadPosts(posts);
-    },
-    error: function (XMLHttpRequest, textStatus, errorThrown) {
-      alert("Postfile的JSON格式化错误" + errorThrown);
-    }
-  });
+  var g_posts = [];     // 总条目
+  var g_pageSize = pageSize;  // 每页显示条目
 
   //TimeAgo
   var showTimeAgo = function() {
@@ -69,9 +59,10 @@ $(document).ready(function(){
     $(".post-data").duoshuo();
   }
 
+  /** return the category-filtered posts */
   var getPostsWithCategory = function(data, category) {
     if (category == null || category == "" || category == "All") {
-      return data;
+      return data.posts;
     }
     var tmp = data; // this is a reference, if need copy use $.extend
     for (var i = 0; i < tmp.posts.length; i++) {
@@ -80,12 +71,31 @@ $(document).ready(function(){
         i--;  //while delete, the index should not increase
       }
     }
-    return tmp;
+    return tmp.posts;
   }
 
+  /** sort by desc */
+  var sortPostsByPin = function(posts) {
+    posts.sort(function(post1, post2) {
+      return post2.pin - post1.pin;
+    });
+    return posts;
+  }
+
+  /** return the pagination-filtered posts (num >= 1) */
+  var getPostsByPageNum = function(posts, num) {
+    if (num <= 0) {
+      return posts;
+    }
+    return posts.slice((num-1)*g_pageSize, num*g_pageSize);
+  }
+
+  /** the final render */
   var loadPosts = function(posts) {
-    //console.log(posts);
-    var text = baidu.template('post-list', posts);
+    // console.log(posts);
+    // baiduTemplateData should be an object
+    var baiduTemplateData = { posts: posts };
+    var text = baidu.template('post-list', baiduTemplateData);
     //console.log(text);
     $(".article-list").html(text);
     $("#middle-panel").css("margin-top", $("#top-menu").height()+20);
@@ -94,7 +104,43 @@ $(document).ready(function(){
     showDuoshuoData();
   }
 
+  // Main
+  $.ajax({
+    type: "get",
+    url: postfile,
+    dataType: "json",
+    success: function (data) {
+      g_posts = getPostsWithCategory(data, g_category);
+      g_posts = sortPostsByPin(g_posts);
+
+      $.jqPaginator('#paginator', {
+        totalCounts: g_posts.length,
+        pageSize: g_pageSize,
+        visiblePages: g_posts.length/g_pageSize >= 10 ? 10 : Math.ceil(g_posts.length/g_pageSize),  // 向上取整
+        currentPage: 1,
+        onPageChange: function (num, type) {
+          // catch exception cause it would stop jqPaginator
+          try {
+            loadPosts(getPostsByPageNum(g_posts, num));
+          } catch (e) {
+            console.error(e);
+          }
+          // scrollTop
+          $("html, body").stop().animate({
+              scrollTop: 0
+          }, 100);
+        }
+      });
+    },
+    error: function (XMLHttpRequest, textStatus, errorThrown) {
+      alert("Postfile的JSON格式化错误" + errorThrown);
+    }
+  });
+
+
+
 /* Handle Window Scroll Event */
+
   var WindowScrollDown = function(top) {
     if (top > 80) {
       $("#top-menu").fadeOut(50);

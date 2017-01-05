@@ -18,6 +18,9 @@ images_url: "/w3c/images/" # the base url of post images
 postfile: "/db/Postfile" # the Database
 sitefile: "/db/Sitefile" # the Database
 
+# pagination
+page_size: 2
+
 # 3rd URL
 duoshuo_short_name: "sbys" # the user of user.domain.com
 duoshuo_user_uid: "6324572809590735618" # the admin user uid

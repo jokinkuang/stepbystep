@@ -131,6 +131,11 @@ body {
 	margin-left: 3px;
 	color: #717171;
 }
+.article-list .pin>img {
+	width: 13px;
+	height: auto;
+	margin-left: 10px;
+}
 .article-list .title {
 	margin-top: 20px;
 	margin-bottom: 10px;
@@ -199,6 +204,84 @@ a.light-white, a.light-white:hover, a.light-white:visited {
 a.white, a.white:hover, a.white:visited {
 	color: white;
 }
+
+/* paginator */
+.paginator-panel {
+	margin-left: 20px;
+	margin-right: 20px;
+	text-align: center;
+}
+.paginator {
+	display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+.paginator>li {
+	display:inline
+}
+.paginator>li>a,.paginator>li>span {
+	position:relative;
+	float:left;
+	padding:6px 12px;
+	line-height:1.42857143;
+	text-decoration:none;
+	color:#428bca;
+	background-color:#fff;
+	border:1px solid #ddd;
+	margin-left:-1px
+}
+.paginator>li:first-child>a,.paginator>li:first-child>span {
+	margin-left:0;
+	border-bottom-left-radius:4px;
+	border-top-left-radius:4px
+}
+.paginator>li:last-child>a,.paginator>li:last-child>span {
+	border-bottom-right-radius:4px;
+	border-top-right-radius:4px
+}
+.paginator>li>a:hover,.paginator>li>span:hover,.paginator>li>a:focus,.paginator>li>span:focus {
+	color:#2a6496;
+	background-color:#eee;
+	border-color:#ddd
+}
+.paginator>.active>a,.paginator>.active>span,.paginator>.active>a:hover,.paginator>.active>span:hover,.paginator>.active>a:focus,.paginator>.active>span:focus {
+	z-index:2;
+	color:#fff;
+	background-color:#428bca;
+	border-color:#428bca;
+	cursor:default
+}
+.paginator>.disabled>span,.paginator>.disabled>span:hover,.paginator>.disabled>span:focus,.paginator>.disabled>a,.paginator>.disabled>a:hover,.paginator>.disabled>a:focus {
+	color:#999;
+	background-color:#fff;
+	border-color:#ddd;
+	cursor:not-allowed
+}
+.paginator-lg>li>a,.paginator-lg>li>span {
+	padding:10px 16px;
+	font-size:18px
+}
+.paginator-lg>li:first-child>a,.paginator-lg>li:first-child>span {
+	border-bottom-left-radius:6px;
+	border-top-left-radius:6px
+}
+.paginator-lg>li:last-child>a,.paginator-lg>li:last-child>span {
+	border-bottom-right-radius:6px;
+	border-top-right-radius:6px
+}
+.paginator-sm>li>a,.paginator-sm>li>span {
+	padding:5px 10px;
+	font-size:12px
+}
+.paginator-sm>li:first-child>a,.paginator-sm>li:first-child>span {
+	border-bottom-left-radius:3px;
+	border-top-left-radius:3px
+}
+.paginator-sm>li:last-child>a,.paginator-sm>li:last-child>span {
+	border-bottom-right-radius:3px;
+	border-top-right-radius:3px
+}
 </style>
 <style type="text/css">
 @media (max-width: 768px)
@@ -227,9 +310,9 @@ a.white, a.white:hover, a.white:visited {
 <div class="content">
 	<div class="left-aside">
 		<div class="remark">
-			<a class="white" href="{{ site.base }}/"><h1>{{ site.title }}</h1></a>
-			<h3>Don't be afraid</h3>
-			<p>一步一个脚印</p>
+			<a class="white" href="{{ site.base }}/"><h3>{{ site.title }}</h3></a>
+			<!-- <h3>Step by Step</h3> -->
+			<p>Learn to Write, Write to Learn</p>
 		</div>
 		<div class="copyright">
 			<p>Thanks to <a class="light-white" href="https://github.com/">Github</a>, <a class="light-white" href="https://jekyllrb.com/">Jekyll</a> and <a class="light-white" href="https://github.com/jokinkuang/stepbystep/">StepByStep</a></p>
@@ -252,7 +335,7 @@ a.white, a.white:hover, a.white:visited {
 		</div>
 		<div id="middle-panel" class="bottom">
 		<ul class="nostyle article-list">
-			<script id="post-list" type="text/html">
+			<script id="post-list-fake" type="text/html">
 				<% for(var i = 0; i < posts.length; i++) { %>
 				<li class="has-img">
 					<% if ( posts[i].image ) { %>
@@ -265,6 +348,9 @@ a.white, a.white:hover, a.white:visited {
 							<a class="author-name dark-grey-link" target="_parent" href="{{ site.base }}/aboutme"><%= posts[i].author %></a>
 							<em>&nbsp;·</em>
 							<span class="time" date-time="<%= posts[i].date %>"></span>
+							<% if ( posts[i].pin > 0 ) { %>
+							<span class="pin"><img src="{{ site.images_url }}pin.png" alt="pin"></span>
+							<% } %>
 						</p>
 						<h4 class="title">
 							<a target="_parent" href="<%= posts[i].url %>"><%= posts[i].title %></a>
@@ -288,17 +374,22 @@ a.white, a.white:hover, a.white:visited {
 			</script>
 		</ul>
 		</div>
+		<div id="paginator-panel" class="paginator-panel">
+			<ul id="paginator" class="paginator"></ul>
+		</div>
 	</div>
 	<div class="right-aside">
-		<!-- RSS -->
-		<a style="float: right;" href="{{ site.base }}/feed.xml" target="_blank">
+		<!-- 用QQ邮箱阅读空间订阅我的博客 -->
+		<a style="float: right;" href="{{ site.base }}/feed.html#qq" target="_blank">
+			<img style="margin-top: 10px; margin-right: 10px;" src="http://res.mail.qq.com/zh_CN/htmledition/images/rss/icon_sub01.gif" alt=""  border="0" />
+		</a><!-- 用QQ邮箱阅读空间订阅我的博客 -->
+		<a style="float: right;" href="{{ site.base }}/feed.html" target="_blank">
 			<img style="margin-top: 10px; margin-right: 10px;" src="{{ site.images_url }}rss.svg" width="20px" alt="" border="0"/>
 		</a>
 		<!-- duoshuo -->
 		<div class="ds-thread" data-thread-key="index" data-max-depth="{{ site.duoshuo_max_depth }}" data-title="{{ site.title }}" data-url="{{ site.domain }}{{ page.url }}"></div>
 	</div>
 </div>
-<div class="talk">Don't be afraid, Step By Step</div>
 <div class="footer"></div>
 
 <!-- duoshuo -->
@@ -306,15 +397,55 @@ a.white, a.white:hover, a.white:visited {
 
 <!-- baiduTemplate -->
 <script type="text/javascript" src="{{ site.baiduTemplate_url }}"></script>
+<script id="post-list" type="text/html">
+	<% for(var i = 0; i < posts.length; i++) { %>
+	<li class="has-img">
+		<% if ( posts[i].image ) { %>
+			<a class="wrap-img" href="<%= posts[i].url %>">
+				<img src="<%= posts[i].image %>" alt="300">
+			</a>
+		<% } %>
+		<div>
+			<p class="list-top">
+				<a class="author-name dark-grey-link" target="_parent" href="{{ site.base }}/aboutme"><%= posts[i].author %></a>
+				<em>&nbsp;·</em>
+				<span class="time" date-time="<%= posts[i].date %>"></span>
+				<% if ( posts[i].pin > 0 ) { %>
+				<span class="pin"><img src="{{ site.images_url }}pin.png" alt="pin"></span>
+				<% } %>
+			</p>
+			<h4 class="title">
+				<a target="_parent" href="<%= posts[i].url %>"><%= posts[i].title %></a>
+			</h4>
+			<div class="list-footer">
+				<!--<a class="grey-link" target="_parent" href="<%=posts[i].url%>">阅读 5915</a>-->
+				<span>字数 <%= posts[i].words %></span>
+				<a class="grey-link post-data" target="_parent" href="<%= posts[i].url %>#comments" data-method="comments" data-thread-key="<%= posts[i].pid %>" data-text=" · 评论 %s"> · 评论 0</a>
+				<span class="post-data" data-method="likes" data-thread-key="<%= posts[i].pid %>" data-text=" · 喜欢 %s"> · 喜欢 0</span>
+				<span class="post-data" data-method="reposts" data-thread-key="<%= posts[i].pid %>" data-text=" · 转发 %s"> · 转发 0</span>
+			</div>
+			<% if ( posts[i].excerpt ) { %>
+			<div class="excerpt">
+				{%comment%}:=表示HTML不转义，baiduTemplate默认的=是HTML转义的，转义后&gt;才会输出">"{%endcomment%}
+				<%:= posts[i].excerpt %>
+			</div>
+			<% } %>
+		</div>
+	</li>
+	<% } %>
+</script>
 
 <!-- jQuery -->
 <script type="text/javascript">
 	var postfile = "{{ site.postfile }}";
+	var pageSize = parseInt("{{ site.page_size }}");
 </script>
 <script src="{{ site.jquery_url }}"></script>
 <script src="{{ site.w3c_url }}js/timeago.js"></script>
 <script src="{{ site.w3c_url }}js/pagecache.js"></script>
 <script src="{{ site.w3c_url }}js/jquery.duoshuo.js"></script>
+
+<script src="{{ site.w3c_url }}js/jqPaginator.js"></script>
 
 <script src="{{ site.w3c_url }}js/article.js"></script>
 

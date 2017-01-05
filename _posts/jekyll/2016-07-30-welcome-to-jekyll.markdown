@@ -5,6 +5,7 @@ date:   2016-07-30 18:07:16
 categories: jekyll update
 pid: 20160730-180716
 image: jekyll.jpg
+pin: 1000
 ---
 Jekyll new 默认生成的欢迎页！
 

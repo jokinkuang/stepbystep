@@ -1,5 +1,17 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+<div id="container">由于在inline script里不能调用document.write，所以使用这种方式<br><br></div>
+
+<script>
+var documentWrite = function(text) {
+  var container = document.getElementById("container");
+  var content = document.createElement("div");
+  content.innerHTML = text+"<br><br>";
+  container.appendChild(content);
+}
+</script>
+
 <script src="pagecache.js"></script>
 <script>
 $PC.Log.level = 5;
@@ -8,28 +20,46 @@ $PC.Log.info("");
 $PC.Log.info("=== Test requesting ===");
 
 // Normal Jsonp Calls
-$PC("http://api.duoshuo.com/threads/counts.jsonp?short_name=jokin&threads=index&callback=?", function(data, response, jsonp){
+$PC("http://api.duoshuo.com/threads/counts.jsonp?short_name=jokin&threads=index&callback=?", function(response, state, jsonp){
+  documentWrite("response:"+JSON.stringify(response)+", state:"+state+", requestObj:"+JSON.stringify(jsonp));
+  documentWrite("Jsonp Call 1 Done");
+
   $PC.Log.info("Jsonp Call 1 Done");
 });
 
-$PC("http://api.duoshuo.com/threads/counts.jsonp?short_name=jokin&threads=index&callback=?", function(){
+$PC("http://api.duoshuo.com/threads/counts.jsonp?short_name=jokin&threads=index&callback=?", function(response, state, jsonp){
+  documentWrite("response:"+JSON.stringify(response)+", state:"+state+", requestObj:"+JSON.stringify(jsonp));
+  documentWrite("Jsonp Call 2 Done");
+
   $PC.Log.info("Jsonp Call 2 Done");
 });
 
-$PC("http://api.duoshuo.com/threads/counts.jsonp?short_name=jokin&threads=index&callback=?", function(){
+$PC("http://api.duoshuo.com/threads/counts.jsonp?short_name=jokin&threads=index&callback=?", function(response, state, jsonp){
+  documentWrite("response:"+JSON.stringify(response)+", state:"+state+", requestObj:"+JSON.stringify(jsonp));
+  documentWrite("Jsonp Call 3 Done");
+
   $PC.Log.info("Jsonp Call 3 Done");
 });
 
 // Normal Json Calls
-$PC("http://hello-xk.github.io/Postfile", function(data, response, jsonp){
+$PC("http://jokinkuang.github.io/Postfile", function(response, state, xmlhttp){
+  documentWrite("response:"+JSON.stringify(response)+", state:"+state+", requestObj:"+JSON.stringify(xmlhttp));
+  documentWrite("Json Call 1 Done");
+
   $PC.Log.info("Json Call 1 Done");
 });
 
-$PC("http://hello-xk.github.io/Postfile", function(){
+$PC("http://jokinkuang.github.io/Postfile", function(response, state, xmlhttp){
+  documentWrite("response:"+JSON.stringify(response)+", state:"+state+", requestObj:"+JSON.stringify(xmlhttp));
+  documentWrite("Json Call 2 Done");
+
   $PC.Log.info("Json Call 2 Done");
 });
 
-$PC("http://hello-xk.github.io/Postfile", function(){
+$PC("http://jokinkuang.github.io/Postfile", function(response, state, xmlhttp){
+  documentWrite("response:"+JSON.stringify(response)+", state:"+state+", requestObj:"+JSON.stringify(xmlhttp));
+  documentWrite("Json Call 3 Done");
+
   $PC.Log.info("Json Call 3 Done");
 });
 
@@ -40,12 +70,18 @@ setTimeout(function(){
   $PC.Log.info("=== Test from cache ===");
 
   // test jsonp call from cache
-  $PC("http://api.duoshuo.com/threads/counts.jsonp?short_name=jokin&threads=index&callback=?", function(){
+  $PC("http://api.duoshuo.com/threads/counts.jsonp?short_name=jokin&threads=index&callback=?", function(response, state, jsonp){
+    documentWrite("response:"+JSON.stringify(response)+", state:"+state+", requestObj:"+JSON.stringify(jsonp));
+    documentWrite("Jsonp Call 4 from cache Done");
+
     $PC.Log.info("Jsonp Call 4 from cache Done");
   });
 
   // test json call from cache
-  $PC("http://hello-xk.github.io/Postfile", function(){
+  $PC("http://jokinkuang.github.io/Postfile", function(response, state, xmlhttp){
+    documentWrite("response:"+JSON.stringify(response)+", state:"+state+", requestObj:"+JSON.stringify(xmlhttp));
+    documentWrite("Json Call 4 from cache Done");
+
     $PC.Log.info("Json Call 4 from cache Done");
   });
 
@@ -59,13 +95,24 @@ setTimeout(function(){
   $PC.Log.info("=== Test error case ===");
 
   // test jsonp error
-  $PC("http://api.duoshuo.com/threads/counts1.jsonp?short_name=&threads=index&callback=?", function(data, response, jsonp){
-  }, function(data, response, jsonp) {
+  $PC("http://api.duoshuo.com/threads/counts1.jsonp?short_name=&threads=index&callback=?"
+  , function(response, state, jsonp){
+
+  }, function(state, jsonp) {
+    documentWrite("state:"+state+", requestObj:"+JSON.stringify(jsonp));
+    documentWrite("Jsonp Call Error === Timeout === Done");
+
     $PC.Log.info("Jsonp Call Error === Timeout === Done");
   });
 
   // test json error
-  $PC("http://api.duoshuo.com/threads/counts.jsonp?short_name=jokin&threads=index", function(){}, function(){
+  $PC("http://api.duoshuo.com/threads/counts.jsonp?short_name=jokin&threads=index"
+  , function(response, state, xmlhttp){
+
+  }, function(state, xmlhttp){
+    documentWrite("state:"+state+", requestObj:"+JSON.stringify(xmlhttp));
+    documentWrite("Json Call Error === Error === Done");
+
     $PC.Log.info("Json Call Error === Error === Done");
   });
 
