@@ -25,8 +25,14 @@ $(document).ready(function(){
 
   //Duoshuo
   var loadDuoshuoData = function() {
-    $PC("http://"+duoshuoShortName+".duoshuo.com/api/posts/list.json", function(data){
-      $("#totalComments").text(data.cursor.total);
+    $PC("http://"+duoshuoShortName+".duoshuo.com/api/threads/list.json?limit=1000000000", function(data){
+      try {
+        var totalComments = 0;
+        for (var i in data.response) {
+          totalComments += data.response[i].comments;
+        }
+        $("#totalComments").text(totalComments);
+      }catch(e){}
     });
     $.Duoshuo.settings = { shortName: duoshuoShortName };
     $(".post-data").duoshuo();
