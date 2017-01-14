@@ -1,5 +1,4 @@
 # Site settings
-version: 1.1.0
 title: Your Title
 author: author
 email:
@@ -43,6 +42,7 @@ kramdown:
   hard_wrap: true # a newline in markdown text would be changed to <br>
 gems:
   - jemoji
+version: 1.1.0
 
 # Following is got in Github Help With Configuring Jekyll
 
