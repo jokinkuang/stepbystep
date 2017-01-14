@@ -19,6 +19,25 @@ A jekyll theme, simple and clear, compatible with PC iPad and Phone (RWD)
 4. Support pagination
 5. Support pinning posts
 
+## What Must To Be Set!
+```
+title:         # your title
+author:        # your name
+email:         # your email
+description: > # your description
+
+domain: "http://yourdomain.github.io" # your domain
+
+page_size: 2   # your pagination page size
+
+duoshuo_short_name: "sbys"              # your duoshuo name xxx.duoshuo.com
+duoshuo_user_uid: "6324572809590735618" # your duoshuo user uid
+duoshuo_user_name: "xk"                 # your duoshuo user name
+
+google_analytics_id: "UA-83197743-1"    # your google analytics id
+```
+`NOTE` If you do NOT set the duoshuo short name, all comments would commit to this site !`
+
 ## Install
 assume the github username is "hello" then:  
 
@@ -52,6 +71,9 @@ if you want to visit "www.hello.com" instead of "hello.github.io" then:
 
 ## Other  
 whoever use this theme please add your site to the [wiki](https://github.com/jokinkuang/stepbystep/wiki)  
+
+## Bugs
+see [Release](https://github.com/jokinkuang/stepbystep/releases)
 
 ## How It works  
 [English](http://www.jokinkuang.info/2016/09/03/stey-by-step-to-create-a-jekyll-theme.html)  
