@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
-<title>index — {{ site.title }}</title>
+<title>{{ site.title }}</title>
 {% include head.meta %}
 
 <style type="text/css">
@@ -44,7 +43,7 @@ body {
 }
 .header-bg {
 	display: block;
-	background-image: url("{{ site.w3c_url }}images/bg.jpg");
+	background-image: url("{{ site.w3c_url }}images/index.jpg");
 	top: 0;
 	left: 0;
 	height: 100%;
@@ -76,6 +75,9 @@ body {
 .link {
   text-decoration: none;
   color: white;
+	background: white;
+	padding: 3px;
+	display: inline-block;	/* make it the size of the content */
 }
 </style>
 <style type="text/css">
@@ -115,6 +117,12 @@ body {
 	-webkit-animation:fadein 3s; /* Safari and Chrome */
 	-o-animation:fadein 3s; /* Opera */
 }
+.fadein-long {
+	animation:fadein 6s;
+	-moz-animation:fadein 6s; /* Firefox */
+	-webkit-animation:fadein 6s; /* Safari and Chrome */
+	-o-animation:fadein 6s; /* Opera */
+}
 }
 </style>
 </head>
@@ -131,8 +139,8 @@ body {
   </div>
 </div>
 <div class="talk">
-	<a class="link" href="{{ site.base }}/article.html">StepIn :)</a>
-	<p>Don't be afraid, Step By Step</p>
+	<h3><a class="link fadein-long" href="{{ site.base }}/article.html"><img src="{{ site.w3c_url }}images/door.png" alt="Enter" title="任意門"></img></a></h3>
+	<p>&copy; {{ site.title }}</p>
 </div>
 <div class="footer"></div>
 

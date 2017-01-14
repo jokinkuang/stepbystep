@@ -1,4 +1,15 @@
 $(document).ready(function(){
+  var executeOnLoad = function(selector, loaded_callback) {
+    // console.log("[executeOnLoad] running with selector: " + selector);
+    var $elements = $(selector);
+    if($elements.length) {
+      $elements.each(function(){
+        loaded_callback.call($(this));
+      });
+    } else {
+      setTimeout(function() { executeOnLoad(selector, loaded_callback); }, 100);
+    }
+  }
 
   //Get URL Parameters
   function getUrlParam(name) {
@@ -137,7 +148,12 @@ $(document).ready(function(){
     }
   });
 
-
+/* refactor the right-aside comment panel */
+  executeOnLoad("#ds-reset .ds-meta", function(){
+    // insert to the duoshuo-comment (to make sure the duoshuo components work!)
+    $(this).append($("#rss-panel").css("display","inline"));
+    $(this).after($("#recent-comment-panel").show());
+  });
 
 /* Handle Window Scroll Event */
 

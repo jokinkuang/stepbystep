@@ -49,6 +49,32 @@
   border-radius: 4px;
   padding: 1px 3px;
 }
+/* likes */
+#ds-thread #ds-reset a.ds-like-thread-button {
+  /* background: none; */
+  /* border: none; */
+  padding: 2px 5px;
+  border-radius: 15px;
+}
+/* recent comments */
+#ds-thread #ds-reset .ds-meta {
+  padding: 3px 0 0;
+}
+#ds-thread #ds-reset a {
+  color: #333;
+}
+div#ds-recent-comments.ds-recent-comments {
+  border: 1px dotted #ddd;
+  border-radius: 10px;
+  padding: 0px 5px 7px 7px;
+}
+#ds-recent-comments li.ds-comment {
+  border-top: none;
+}
+#ds-recent-comments li.ds-comment .ds-excerpt {
+  color: #666;
+  margin-top: 10px;
+}
 /* hot comments */
 #ds-thread #ds-reset #ds-hot-posts {
   border-radius: 10px;
@@ -72,11 +98,6 @@
 }
 #ds-smilies-tooltip .ds-smilies-container {
   margin-left: 80px;
-}
-/* likes */
-#ds-thread #ds-reset a.ds-like-thread-button {
-  background: none;
-  border: none;
 }
 /* image */
 #ds-thread #ds-reset .ds-replybox .ds-avatar img {

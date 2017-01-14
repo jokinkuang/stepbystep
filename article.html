@@ -38,14 +38,33 @@ body {
 }
 .left-aside .remark {
 	position: absolute;
-	bottom: 30px;
-	padding-left: 30px;
+	width: 100%;
+	bottom: 13%;
 	color: white;
+	text-align: center;
+}
+.left-aside .remark .text {
+	display: inline-block;	/* make div size match content's size but not the parent's size */
+	text-align: left;
+}
+.left-aside .author .avatar {
+	float: left;
+	width: 80px;
+	height: 80px;
+	margin-right: 10px;
+	border-radius: 50%;
+}
+.left-aside .author .avatar img {
+	width: 100%;
+	height: 100%;
+	border-radius: 100%;
+	-webkit-border-radius: 100%;
+	box-sizing: border-box;
 }
 .left-aside .copyright {
 	width: 100%;
 	position: absolute;
-	bottom: 0;
+	bottom: 20px;
 	padding: 0;
 	color: white;
 	text-align: center;
@@ -310,9 +329,14 @@ a.white, a.white:hover, a.white:visited {
 <div class="content">
 	<div class="left-aside">
 		<div class="remark">
-			<a class="white" href="{{ site.base }}/"><h3>{{ site.title }}</h3></a>
-			<!-- <h3>Step by Step</h3> -->
-			<p>Learn to Write, Write to Learn</p>
+			<div class="text author">
+				<a class="avatar" href="{{ site.base }}/aboutme">
+					<img src="{{ site.w3c_url }}images/avator.jpg" alt="about me" title="About Me"/>
+				</a>
+				<a class="white" href="{{ site.base }}/"><h2>{{ site.title }}</h2></a>
+				<!-- <h3>Step by Step</h3> -->
+				<p>—— Learn to Write, Write to Learn</p>
+			</div>
 		</div>
 		<div class="copyright">
 			<p>Thanks to <a class="light-white" href="https://github.com/">Github</a>, <a class="light-white" href="https://jekyllrb.com/">Jekyll</a> and <a class="light-white" href="https://github.com/jokinkuang/stepbystep/">StepByStep</a></p>
@@ -379,14 +403,21 @@ a.white, a.white:hover, a.white:visited {
 		</div>
 	</div>
 	<div class="right-aside">
-		<!-- 用QQ邮箱阅读空间订阅我的博客 -->
-		<a style="float: right;" href="{{ site.base }}/feed.html#qq" target="_blank">
-			<img style="margin-top: 10px; margin-right: 10px;" src="http://res.mail.qq.com/zh_CN/htmledition/images/rss/icon_sub01.gif" alt=""  border="0" />
-		</a><!-- 用QQ邮箱阅读空间订阅我的博客 -->
-		<a style="float: right;" href="{{ site.base }}/feed.html" target="_blank">
-			<img style="margin-top: 10px; margin-right: 10px;" src="{{ site.images_url }}rss.svg" width="20px" alt="" border="0"/>
-		</a>
+		<div id="rss-panel" style="display: none;">
+			<!-- 用QQ邮箱阅读空间订阅我的博客 -->
+			<a style="float: right;" href="{{ site.base }}/feed.html#qq" target="_blank">
+				<img style="" src="http://res.mail.qq.com/zh_CN/htmledition/images/rss/icon_sub01.gif" alt=""  border="0" />
+			</a><!-- 用QQ邮箱阅读空间订阅我的博客 -->
+			<a style="float: right;margin-right:10px;" href="{{ site.base }}/feed.html" target="_blank">
+				<img style="width:20px;height:20px;" src="{{ site.images_url }}rss.svg" alt="" border="0"/>
+			</a>
+		</div>
 		<!-- duoshuo -->
+		<div id="recent-comment-panel" style="display:none;style="border: solid 1px #ddd;"">
+			<p style="color:#666;margin: 15px 0 10px 0;">最新评论</p>
+			<div class="ds-recent-comments" data-num-items="1" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="0" data-excerpt-length="70"></div>
+		</div>
+		<!-- 评论列表 -->
 		<div class="ds-thread" data-thread-key="index" data-max-depth="{{ site.duoshuo_max_depth }}" data-title="{{ site.title }}" data-url="{{ site.domain }}{{ page.url }}"></div>
 	</div>
 </div>
