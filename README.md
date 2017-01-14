@@ -36,7 +36,7 @@ duoshuo_user_name: "xk"                 # your duoshuo user name
 
 google_analytics_id: "UA-83197743-1"    # your google analytics id
 ```
-`NOTE` If you do NOT set the duoshuo short name, all comments would commit to this site !`
+*NOTE* **If you do NOT set the duoshuo short name, all comments would commit to this demo site !**
 
 ## Install
 assume the github username is "hello" then:  
