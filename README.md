@@ -34,7 +34,8 @@ duoshuo_short_name: "sbys"              # your duoshuo name xxx.duoshuo.com
 duoshuo_user_uid: "6324572809590735618" # your duoshuo user uid
 duoshuo_user_name: "xk"                 # your duoshuo user name
 
-google_analytics_id: "UA-83197743-1"    # your google analytics id
+google_analytics_id: ""                 # your google analytics id
+baidu_tongji_id: ""                     # your baidu tongji id
 ```
 *NOTE* **If you do NOT set the duoshuo short name, all comments would commit to this demo site !**
 
@@ -67,7 +68,7 @@ if you want to visit "www.hello.com" instead of "hello.github.io" then:
 ## Custom Your Site  
 1. you need a [duoshuo](http://www.duoshuo.com) account  
 2. you need a [google-analytics](https://www.google.com/analytics/) account  
-3. all settings are in `_config.yml` 
+3. all settings are in `_config.yml`
 
 ## Other  
 whoever use this theme please add your site to the [wiki](https://github.com/jokinkuang/stepbystep/wiki)  
@@ -81,4 +82,3 @@ see [Release](https://github.com/jokinkuang/stepbystep/releases)
 
 ## License  
 Under The [MIT](https://tldrlegal.com/license/mit-license) License
-
