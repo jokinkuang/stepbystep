@@ -4,7 +4,7 @@
 <meta name="author" content="{{ site.author }}" />
 
 <title>{% if page.title != "" %}{{ page.title | escape | append: " — " | append: site.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
-<meta name="description" content="{% if page.excerpt == "" %}{{ page.content | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ page.excerpt }}{% endif %}">
+<meta name="description" content="{% if page.excerpt == "" %}{{ page.content | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ page.excerpt | strip_html | strip_newlines }}{% endif %}"/>
 
 <link rel="icon" href="{{ site.w3c_url }}images/sicon.png" type="image/x-icon" />
 <link rel="shortcut icon" href="{{ site.w3c_url }}images/sicon.png" type="image/x-icon" />
