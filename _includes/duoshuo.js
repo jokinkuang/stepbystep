@@ -59,6 +59,7 @@
 /* recent comments */
 #ds-thread #ds-reset .ds-meta {
   padding: 3px 0 0;
+  border: none;
 }
 #ds-thread #ds-reset a {
   color: #333;
