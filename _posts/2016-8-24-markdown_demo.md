@@ -4,14 +4,11 @@ title: Markdown Demo
 categories: markdown
 date: 2016-08-24 12:38:11
 pid: 20160824-123811
+pin: 100
 # you can override the settings in _config.yml here !!
 ---
 
 > 一个用来测试当前站点的Markdown样式的Demo
-
-{:use_numbered_headers => true}
-* auto-gen TOC:
-{:toc}
 
 ```
 Attentions (放在开头)：
@@ -21,20 +18,26 @@ Attentions (放在开头)：
   # H1
   ## H2
   只能解析H1，##H2被解析为<p>
-  比如：
-  texttext
-  > TEXT
-  都解析为<p>，texttext>TEXT
 
   要正确被解析，应该在两个解析间插入空行
 
-2,markdown语法关键字与被修饰的`段`一般都要留个空格
+2,markdown语法关键字与内容一般都要留个空格。
   比如： # 空格 H1
 
-3,代码块内不能再使用markdown关键字，因为代码块是<pre>，这个看当前块可知
+3,代码块内不能再使用markdown关键字，因为代码块是<pre>。
 
-4,本demo开启了kramdown的hard_wrap: true自动将换行符转换为<br>
+4,本demo开启了kramdown的hard_wrap: true自动将换行符转换为<br>。
+
+5,本demo展示了本站点的样式(css)，如果不喜欢，可以通过此demo修改。
+
+6,本demo还包含了markdown的基本语法（红块）。
 ```
+:smile:本Demo的[Markdown源码](https://raw.githubusercontent.com/jokinkuang/stepbystep/master/_posts/2016-8-24-markdown_demo.md)
+
+目录：
+{:use_numbered_headers => true}
+* auto-gen TOC:
+{:toc}
 
 # Kramdown Markdown Syntax
 
@@ -186,6 +189,8 @@ First Header | Second Header
 Content from cell 1 | Content from cell 2
 Content in the first column | Content in the second column
 
+> 表格
+> cell1 \| cell2  （ \| 两边要空格）
 
 ## SHA references
 
@@ -209,6 +214,7 @@ Typing an @ symbol, followed by a username, will notify that person to come and 
 
 Any URL (like <http://www.github.com/>) will be automatically converted into a clickable link.    
 
+> 自动链接，必须以http开头
 > \<http://example.com>
 
 
@@ -216,8 +222,15 @@ Any URL (like <http://www.github.com/>) will be automatically converted into a c
 
 Any word wrapped with two tildes (like ~~this~~) will appear crossed out.
 
+> 划掉线
+> \~~关键字~~
+
 ## Emoji
 
 GitHub supports emoji! :sparkles: :camel: :boom:
 
 To see a list of every image we support, check out the Emoji Cheat Sheet.
+<http://www.webpagefx.com/tools/emoji-cheat-sheet/>
+
+> 表情
+> 空格:emoji:

@@ -5,6 +5,7 @@ categories: jekyll
 image: jekyll.jpg
 date: 2016-9-3 15:47:05
 pid: 20160903-154705
+pin: 9
 # excerpt: ""
 # you can override the settings in _config.yml here !!
 ---
